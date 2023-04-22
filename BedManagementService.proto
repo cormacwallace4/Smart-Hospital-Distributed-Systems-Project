@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "BedManagementService";
+option java_outer_classname = "BedProto";
+
+package BedManagementService;
+
+service HospitalBedService {
+  rpc checkBedAvailability(stream HospitalBedRequest) returns (stream HospitalBedResponse) {}
+  rpc assignBed(stream BedAssignmentRequest) returns (BedAssignmentResponse) {}
+  rpc giveCleaner(CleanerRequest) returns (CleanerResponse) {}
+}
+
+message HospitalBedRequest {
+  int32 bed_id = 1;
+}
+
+message HospitalBedResponse {
+  bool available = 1;
+  int32 bed_id = 2;
+}
+
+message BedAssignmentRequest {
+  int32 bed_id = 1;
+  string patient_name = 2;
+}
+
+message BedAssignmentResponse {
+  bool success = 1;
+  string assigned_patient_name = 2;
+  int32 bed_id = 3;
+}
+
+message CleanerRequest{
+	string name = 1;
+}
+
+message CleanerResponse{
+	string message = 1;
+}
+

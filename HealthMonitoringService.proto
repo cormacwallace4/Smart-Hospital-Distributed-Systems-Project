@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "HealthMonitoringService";
+option java_outer_classname = "MonitoringProto";
+
+
+package HealthMonitoringService;
+
+service HealthMonitoringService {
+  rpc GetPatientVitals(PatientID) returns (PatientVitals);
+  rpc AlertDoctors(PatientVitals) returns (AlertConfirmation);
+  rpc GetSafeVitals(SafeVitalsRequest) returns (AllVitalsReply);
+}
+
+message PatientID {
+  string id = 1;
+}
+
+message PatientVitals {
+  string patient_id = 1;
+  double heart_rate = 2;
+  double blood_pressure = 3;
+  double temperature = 4;
+}
+
+message SafeVitalsRequest {
+  string name = 1;
+}
+
+message VitalSigns {
+  string VitalSignName = 1;
+  string SafeRange = 2;
+}
+
+message AllVitalsReply {
+  repeated VitalSigns VitalSignName = 1;
+}
+
+
+message AlertConfirmation {
+  bool success = 1;
+}

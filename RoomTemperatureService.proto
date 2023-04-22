@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "RoomTempService";
+option java_outer_classname = "TemperatureProto";
+
+package RoomTempService;
+
+service Temperature {
+  rpc GiveTemp(TempRequest) returns (TempReply) {}
+  rpc SetTemp(SetTempRequest) returns (TempReply) {}
+  rpc GetAllRooms(TempRequest) returns (AllRoomsReply) {}
+}
+
+message SetTempRequest {
+  int32 room_number = 1;
+  string temperature = 2;
+}
+
+message TempRequest {
+  string name = 1;
+}
+
+message TempReply {
+  string message = 1;
+}
+
+message RoomTemp {
+  int32 room_number = 1;
+  string temperature = 2;
+}
+
+message AllRoomsReply {
+  repeated RoomTemp rooms = 1;
+}
+
