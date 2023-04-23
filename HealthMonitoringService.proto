@@ -8,9 +8,9 @@ option java_outer_classname = "MonitoringProto";
 package HealthMonitoringService;
 
 service HealthMonitoringService {
-  rpc GetPatientVitals(PatientID) returns (PatientVitals);
-  rpc AlertDoctors(PatientVitals) returns (AlertConfirmation);
-  rpc GetSafeVitals(SafeVitalsRequest) returns (AllVitalsReply);
+  rpc GetPatientVitals(PatientID) returns (PatientVitals); //UNARY
+  rpc AlertDoctors(PatientVitals) returns (AlertConfirmation);//BI DIRECTIONAL
+  rpc GetSafeVitals(SafeVitalsRequest) returns (AllVitalsReply); //SERVER STREAMING
 }
 
 message PatientID {
