@@ -433,7 +433,7 @@ public class ControllerGui extends JFrame implements ActionListener {
 
             @Override
             public void onError(Throwable t) {
-                System.err.println("Error occurred during alert confirmation: " + t.getMessage());
+                outputArea.append("Error occurred during alert confirmation: " + t.getMessage());
             }
 
             @Override
@@ -595,7 +595,7 @@ public class ControllerGui extends JFrame implements ActionListener {
 
                 @Override
                 public void onError(Throwable t) {
-                    //do nothing
+                	outputArea.append("Error: " + t.getMessage() + "\n");
                 }
 
                 @Override
